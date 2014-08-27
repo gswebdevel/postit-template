@@ -1,0 +1,17 @@
+<div class="span8 well">
+  <%= render post.categories %>
+  <h4><%= link_to post.title, post.url %> (<%= link_to 'Edit', edit_post_path(post) %>)</h4>
+  <p><%= post.description %></p>
+  <p>
+    <span class="quiet">posted by <%= post.user.username %></span>
+    <small>posted on <%= nice_date(post.created_at) %> or <%= post.nice_created_at_date %>
+    </small>
+  </p>
+  <small>
+                  <span>
+          <%= link_to("#{post.comments.size} comments", post_path(post)) %>
+        </span>
+
+  </small>
+
+</div>

@@ -1,0 +1,11 @@
+<!--error display on return to new -->
+<% if data.errors.any? %>
+    <div class="alert alert-error">
+      <h5>There where errors found</h5>
+      <ul>
+        <% data.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+<% end %>

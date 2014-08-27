@@ -1,0 +1,49 @@
+<<<<<<< HEAD
+<h4>You are viewing post: <%= link_to @post.title, fix_url(@post.url) %></#></h4>
+<%= link_to "All Posts", posts_path %>
+=======
+>>>>>>> FETCH_HEAD
+<p>
+
+<%= render @post.categories %>
+</p>
+<<<<<<< HEAD
+=======
+<%= render 'shared/content_title', title: @post.title %>
+
+
+>>>>>>> FETCH_HEAD
+
+<p>
+<%= @post.description %>
+
+</p>
+<<<<<<< HEAD
+<hr/>
+
+<h5>Create Comments:</h5>
+<%= form_for [@post, @comment] do |f| %> <!-- because URL is posts/id/comments
+
+    <!--error display on return to new -->
+    <%= render 'shared/error_check_message', data: @comment %>
+
+    <%= f.text_area :body, rows: 3, class: 'span4' %>
+    <br />
+    <%= f.submit "Create Comment", class: "btn btn-primary" %>
+<% end %>
+
+<h5>Comments:</h5>
+
+<% @post.comments.each do |one_comment| %>
+  <div class="well span8">
+    <em>"<%= one_comment.body %>"</em>
+    <br />
+    <span class="quiet">posted by <%= link_to one_comment.user.username, '' %></span>
+    <small>posted on <%= nice_date(one_comment.created_at) %>
+    </small>
+
+  </div>
+<% end %>
+=======
+<hr/>
+>>>>>>> FETCH_HEAD
