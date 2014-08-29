@@ -1,28 +1,10 @@
 <%= render 'shared/content_title', title: 'All Posts' %>
 
 <% @posts.each do |post| %>
-<<<<<<< HEAD
+
 
   <%= render 'post', post: post %>
-=======
-<div class="row">
-    <div class="span8 well">
-      <%= render post.categories %>
-        <h4><%= link_to post.title, post.url %></h4>
-      <p><%= post.description %></p>
-      <p>
-        <span class="quiet">posted by <%= post.user.username %></span>
-        <small>posted on <%= post.created_at.strftime("%m/%d/%y") %>
-        </small>
-      </p>
-        <small>
-                  <span>
-          <%= link_to("#{post.comments.size} comments", post_path(post)) %>
-        </span>
 
-        </small>
 
-    </div>
-</div>
->>>>>>> FETCH_HEAD
+
 <% end %>

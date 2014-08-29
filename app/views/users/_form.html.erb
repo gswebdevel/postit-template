@@ -1,0 +1,20 @@
+
+<!--error display on return to new -->
+<%= render 'shared/error_check_message', data: @user %>
+
+
+<div class="well">
+  <%= form_for @user do |f|%>
+      <div class="control-group">
+        <%= f.label :username %>
+        <%= f.text_field :username %>
+      </div>
+      <div class="control-group">
+        <%= f.label :password %>
+        <%= f.password_field :password %>
+      </div>
+      <%= f.submit(@user.new_record? ? 'Create User' : 'Update Profile', class: 'btn btn-primary') %>
+
+  <% end %>
+
+</div>

@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update]
+  before_action :require_user, except: [:index, :show] # to resrict only if there is a user login
   #1. for set up of instance variable in action
   #2. for redirect based on some condition like not authenticated
 
@@ -8,7 +9,7 @@ class PostsController < ApplicationController
   end
 
   def show
-<<<<<<< HEAD
+
     @comment = Comment.new
   end
 
@@ -19,33 +20,27 @@ class PostsController < ApplicationController
   def create
 
     @post = Post.new(post_params)
-    test_id =  rand(0..3).to_i
-    if test_id == nil
-      test_id =1
-    end
-    @post.user = User.find_by id: test_id
+    #test_id =  rand(0..3).to_i
+    #if test_id == nil
+    #  test_id =1
+    #end
+    #@post.user = User.find_by id: test_id
+    # above not needed any more
+    @post.user = current_user
     if @post.save
-      flash[:notice] = "You Posts was Created!!!"
+      flash[:notice] = "Your Posts was Created!!!"
       redirect_to posts_path
     else
       render :new
     end
   end
-=======
+
+
+  def edit
     @post = Post.find(params[:id])
   end
 
-  def new
 
-  end
-
-  def create
->>>>>>> FETCH_HEAD
-
-  def edit
-  end
-
-<<<<<<< HEAD
   def update
 
     if @post.update(post_params)
@@ -66,14 +61,7 @@ class PostsController < ApplicationController
 
   def set_post
     @post = Post.find(params[:id])
-=======
-  def edit
 
-  end
-
-  def update
-
->>>>>>> FETCH_HEAD
   end
 
 end

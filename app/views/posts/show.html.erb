@@ -1,26 +1,23 @@
-<<<<<<< HEAD
+
 <h4>You are viewing post: <%= link_to @post.title, fix_url(@post.url) %></#></h4>
 <%= link_to "All Posts", posts_path %>
-=======
->>>>>>> FETCH_HEAD
+
 <p>
 
 <%= render @post.categories %>
 </p>
-<<<<<<< HEAD
-=======
+
 <%= render 'shared/content_title', title: @post.title %>
 
 
->>>>>>> FETCH_HEAD
 
 <p>
 <%= @post.description %>
 
 </p>
-<<<<<<< HEAD
-<hr/>
 
+<hr/>
+<% if logged_in? %>
 <h5>Create Comments:</h5>
 <%= form_for [@post, @comment] do |f| %> <!-- because URL is posts/id/comments
 
@@ -31,7 +28,7 @@
     <br />
     <%= f.submit "Create Comment", class: "btn btn-primary" %>
 <% end %>
-
+<% end %>
 <h5>Comments:</h5>
 
 <% @post.comments.each do |one_comment| %>
@@ -44,6 +41,6 @@
 
   </div>
 <% end %>
-=======
+
 <hr/>
->>>>>>> FETCH_HEAD
+

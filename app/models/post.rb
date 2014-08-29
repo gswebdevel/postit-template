@@ -3,7 +3,7 @@ class Post < ActiveRecord::Base;
   has_many :comments
   has_many :post_categories
   has_many :categories, through: :post_categories
-<<<<<<< HEAD
+
 
   validates :title, presence: true, length: {minimum: 5}
   validates :description, presence: true
@@ -17,6 +17,4 @@ class Post < ActiveRecord::Base;
     nice_date(created_at)
   end
 
-=======
->>>>>>> FETCH_HEAD
 end
