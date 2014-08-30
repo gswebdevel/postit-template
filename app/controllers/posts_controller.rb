@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update]
-  before_action :require_user, except: [:index, :show] # to resrict only if there is a user login
+  before_action :require_user, except: [:index, :show] # to resc
   #1. for set up of instance variable in action
   #2. for redirect based on some condition like not authenticated
 

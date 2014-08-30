@@ -32,14 +32,7 @@
 <h5>Comments:</h5>
 
 <% @post.comments.each do |one_comment| %>
-  <div class="well span8">
-    <em>"<%= one_comment.body %>"</em>
-    <br />
-    <span class="quiet">posted by <%= link_to one_comment.user.username, '' %></span>
-    <small>posted on <%= nice_date(one_comment.created_at) %>
-    </small>
-
-  </div>
+<%= render 'comment', one_comment: one_comment, show_post: false %>
 <% end %>
 
 <hr/>

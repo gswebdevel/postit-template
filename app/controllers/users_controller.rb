@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-
+  before_action :set_user, only: [:show, :edit, :update]
+  before_action :require_same_user, only: [:edit, :update]
 
   def new
     @user = User.new
@@ -20,19 +21,26 @@ class UsersController < ApplicationController
   end
 
   def edit
+
   end
 
 
   def update
 
-    if @user.update(post_params)
-      flash[:notice] = "Your Posts was Updated!!!"
+
+    if @user.update(user_params)
+      flash[:notice] = "Your Profile was updated!!!"
       #redirect_to posts_path
-      redirect_to post_path(@user)
+      redirect_to user_path(@user)
     else
       render :edit
     end
   end
+
+  def show
+
+  end
+
 
   private
 
@@ -41,5 +49,15 @@ class UsersController < ApplicationController
     #params.require(:user).permit(:username, :password)
   end
 
+  def set_user
+    @user = User.find(params[:id])
+  end
+
+  def require_same_user
+    if current_user != @user
+      flash[:error] = "You are not the correct user for this."
+      redirect_to root_path
+    end
+  end
 
   end

@@ -15,7 +15,7 @@ PostitTemplate::Application.routes.draw do
   resources :categories, only: [:new, :create, :show]
   resources :comments, only: [:create, :show]
 
-  resources :users, only: [:create]
+  resources :users, only: [:create, :show, :edit, :update]
 
 end
 

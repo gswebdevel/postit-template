@@ -7,7 +7,7 @@
   </h4>
   <p><%= post.description %></p>
   <p>
-    <span class="quiet">posted by <%= post.user.username %></span>
+    <span class="quiet">posted by <%= link_to post.user.username, user_path(post.user) %></span>
     <small>posted on <%= nice_date(post.created_at) %> or <%= post.nice_created_at_date %>
     </small>
   </p>

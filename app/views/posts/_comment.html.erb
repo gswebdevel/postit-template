@@ -1,0 +1,13 @@
+<% show_post ||= false %>
+
+<div class="well span8">
+  <em>"<%= one_comment.body %>"</em>
+  <% if show_post %>
+      on <%= link_to one_comment.post.title, post_path(one_comment.post) %>
+  <% end %>
+  <br/>
+  <span class="quiet">posted by <%= link_to one_comment.user.username, user_path(one_comment.user) %></span>
+  <small>posted on <%= nice_date(one_comment.created_at) %>
+  </small>
+
+</div>

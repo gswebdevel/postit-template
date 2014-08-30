@@ -1,0 +1,55 @@
+<%= render 'shared/content_title', title: "Profile #{@user.username}" %>
+
+<div class="well">
+  <ul>
+    <li>Username: <%= @user.username %></li>
+    <li>Time Zone:</li>
+
+
+  </ul>
+
+</div>
+
+<h5><%= @user.username %> Activities</h5>
+
+<ul class="nav nav-tabs">
+  <li class='<%= 'active' if params[:tab] == 'posts' %>'>
+    <%= link_to "Post (#{@user.posts.size})", user_path(@user, tab: 'posts') %>
+  </li>
+  <li class='<%= 'active' if params[:tab] == 'comments' %>'>
+    <%= link_to "Comments (#{@user.comments.size})", user_path(@user, tab: 'comments') %>
+  </li>
+</ul>
+
+<% if params[:tab] == 'posts' %>
+    <% @user.posts.each do |one_post| %>
+        <%= render 'posts/post', post: one_post %>
+    <% end %>
+<% elsif params[:tab] == 'comments' %>
+    <% @user.comments.each do |one_comment| %>
+        <%= render 'posts/comment', one_comment: one_comment, show_post: true %>
+
+    <% end %>
+<% end %>
+
+
+
+<h6>Posts</h6>
+<ul>
+  <% @user.posts.each do |one_post| %>
+      <li><%= one_post.title %>
+        Comments:
+        <% one_post.comments.each do |one_comment| %>
+            <ul>
+              <li>
+                <%= one_comment.body %>
+              </li>
+            </ul>
+        <% end %>
+
+      </li>
+
+
+  <% end %>
+
+</ul>
