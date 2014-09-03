@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20140826232557) do
-=======
-ActiveRecord::Schema.define(version: 20140813162940) do
->>>>>>> FETCH_HEAD
+ActiveRecord::Schema.define(version: 20140901210807) do
 
   create_table "categories", force: true do |t|
     t.text     "name"
@@ -75,6 +71,15 @@ ActiveRecord::Schema.define(version: 20140813162940) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "password_digest"
+  end
+
+  create_table "votes", force: true do |t|
+    t.boolean  "vote"
+    t.integer  "user_id"
+    t.string   "voteable_type"
+    t.string   "voteable_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

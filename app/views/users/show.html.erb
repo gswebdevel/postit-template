@@ -22,7 +22,7 @@
 </ul>
 
 <% if params[:tab] == 'posts' %>
-    <% @user.posts.each do |one_post| %>
+    <% @user.posts_sorted_by_votes.each do |one_post| %>
         <%= render 'posts/post', post: one_post %>
     <% end %>
 <% elsif params[:tab] == 'comments' %>
@@ -33,7 +33,7 @@
 <% end %>
 
 
-
+<!--
 <h6>Posts</h6>
 <ul>
   <% @user.posts.each do |one_post| %>
@@ -51,5 +51,5 @@
 
 
   <% end %>
-
+-->
 </ul>

@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   #2. for redirect based on some condition like not authenticated
 
   def index
-    @posts = Post.all
+    @posts = Post.all.sort_by{|x| x.total_votes}.reverse
   end
 
   def show
@@ -51,6 +51,18 @@ class PostsController < ApplicationController
       render :edit
     end
   end
+
+  # not normal CRUD
+  def vote
+    @vote = Vote.create(voteable: set_post, user: current_user, vote: params[:vote])
+    if @vote.valid?
+      flash[:notice] = "Your vote was counted"
+    elsif
+      flash[:error] = "Vote error, you may only vote one time"
+    end
+    redirect_to :back
+  end
+
 
   private
 
