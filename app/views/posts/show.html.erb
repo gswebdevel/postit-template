@@ -1,10 +1,9 @@
-
 <h4>You are viewing post: <%= link_to @post.title, fix_url(@post.url) %></#></h4>
 <%= link_to "All Posts", posts_path %>
 
 <p>
 
-<%= render @post.categories %>
+  <%= render @post.categories %>
 </p>
 
 <%= render 'shared/content_title', title: @post.title %>
@@ -12,27 +11,27 @@
 
 
 <p>
-<%= @post.description %>
+  <%= @post.description %>
 
 </p>
 
 <hr/>
 <% if logged_in? %>
-<h5>Create Comments:</h5>
-<%= form_for [@post, @comment] do |f| %> <!-- because URL is posts/id/comments
+    <h5>Create Comments:</h5>
+    <%= form_for [@post, @comment] do |f| %> <!-- because URL is posts/id/comments
 
     <!--error display on return to new -->
-    <%= render 'shared/error_check_message', data: @comment %>
+        <%= render 'shared/error_check_message', data: @comment %>
 
-    <%= f.text_area :body, rows: 3, class: 'span4' %>
-    <br />
-    <%= f.submit "Create Comment", class: "btn btn-primary" %>
-<% end %>
+        <%= f.text_area :body, rows: 3, class: 'span4' %>
+        <br/>
+        <%= f.submit "Create Comment", class: "btn btn-primary" %>
+    <% end %>
 <% end %>
 <h5>Comments:</h5>
 
 <% @post.comments.each do |one_comment| %>
-<%= render 'comment', one_comment: one_comment, show_post: false %>
+    <%= render 'posts/comment', one_comment: one_comment, show_post: false %>
 <% end %>
 
 <hr/>
