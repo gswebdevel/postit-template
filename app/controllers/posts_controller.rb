@@ -93,7 +93,8 @@ class PostsController < ApplicationController
     end
   end
 
-
+# private methods next
+  
   private
 
   def post_params
