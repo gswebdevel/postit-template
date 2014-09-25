@@ -37,7 +37,9 @@
       <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="RAILS_SERVER_TYPE" VALUE="Default" />
       <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="ENVIRONMENT_TYPE" VALUE="development" />
       <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="LAUNCH_JS" VALUE="false" />
+      <RunnerSettings RunnerId="RubyDebugRunner" />
       <RunnerSettings RunnerId="RubyRunner" />
+      <ConfigurationWrapper RunnerId="RubyDebugRunner" />
       <ConfigurationWrapper RunnerId="RubyRunner" />
       <method />
     </configuration>
@@ -245,6 +247,20 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library">
+      <library name="total_votes_gsmith (v0.0.0, /Users/gjsmith/Documents/sites/course2/week4/total_votes-gem) [path][gem]">
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../total_votes-gem/bin" />
+          <root url="file://$MODULE_DIR$/../total_votes-gem/lib" />
+          <root url="file://$MODULE_DIR$/../total_votes-gem/.idea" />
+        </CLASSES>
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/../total_votes-gem/bin" />
+          <root url="file://$MODULE_DIR$/../total_votes-gem/lib" />
+          <root url="file://$MODULE_DIR$/../total_votes-gem/.idea" />
+        </SOURCES>
+      </library>
+    </orderEntry>
     <orderEntry type="library" scope="PROVIDED" name="actionmailer (v4.0.0, rbenv: 2.1.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="actionpack (v4.0.0, rbenv: 2.1.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="activemodel (v4.0.0, rbenv: 2.1.1) [gem]" level="application" />

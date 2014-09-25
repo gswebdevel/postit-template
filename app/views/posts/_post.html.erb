@@ -1,15 +1,21 @@
 <div class='row'>
   <div class='span0 well text-center'>
     <% if current_user %>
-        <%= link_to vote_post_path(post, vote: true), method: post do %>
-            <i class="icon-arrow-up"></i>
+        <% if post.may_vote(current_user) %>
+        <%= link_to vote_post_path(post, vote: true), method: 'post', remote: true do %>
+
+                <i id="post_<%=post.id%>_up_arrow" class="icon-arrow-up"></i>
+
+        <% end %>
             <% end %>
     <br/>
     <% end %>
-    vote<br/>(<%= post.total_votes %> of <%= post.votes.size %>)<br/>
+
+    <span id='post_<%=post.id%>_votes'><%= post.total_votes %></span> <span id='post_label_<%=post.id%>_votes'><%= 'vote'.pluralize(post.total_votes) %></span><br/>
+
     <% if current_user %>
-        <%= link_to vote_post_path(post, vote: false), method: post do %>
-            <i class="icon-arrow-down"></i>
+        <%= link_to vote_post_path(post, vote: false), method: 'post', remote: true do %>
+            <i id="post_<%=post.id%>_down_arrow" class="icon-arrow-down"></i>
             <% end %>
     <% end %>
   </div>

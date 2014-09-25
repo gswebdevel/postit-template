@@ -14,6 +14,11 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'bcrypt-ruby', '~> 3.0.1'
 
+# my personal gems
+#gem 'total_votes_gsmith'
+# you can specify a path for debuging or using
+gem 'total_votes_gsmith', path: '/Users/gjsmith/documents/sites/course2/week4/total_votes-gem/'
+
 group :doc do
   gem 'sdoc', require: false
 end

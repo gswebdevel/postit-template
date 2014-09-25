@@ -30,7 +30,8 @@
 <% end %>
 <h5>Comments:</h5>
 
-<% @post.comments.each do |one_comment| %>
+<!-- us reload to get the lattest from the db -->
+<% @post.reload.comments.each do |one_comment| %>
     <%= render 'posts/comment', one_comment: one_comment, show_post: false %>
 <% end %>
 

@@ -1,0 +1,21 @@
+<% if @vote.valid? %>
+
+    <% if !@post.nil? %>
+        $('#post_<%=@post.id%>_votes').html('<%= @post.total_votes %>');
+        $('#post_label_<%=@post.id%>_votes').html('<%= 'vote'.pluralize(@post.total_votes) %>');
+        <% if  !@post.may_vote(current_user) %>
+            $('#post_<%=@post.id%>_up_arrow').removeClass('icon-arrow-up').addClass('nothing');
+            $('#post_<%=@post.id%>_down_arrow').removeClass('icon-arrow-down').addClass('nothing');
+        <% end %>
+    <% end %>
+
+    <% if !@one_comment.nil? %>
+        $('#comment_<%=@one_comment.id%>_votes').html('<%= @one_comment.total_votes %>');
+        $('#comment_label_<%=@one_comment.id%>_votes').html('<%= 'vote'.pluralize(@one_comment.total_votes) %>');
+    <% end %>
+
+<% else %>
+    alert('Vote error, you may only vote one time');
+
+<% end %>
+

@@ -2,11 +2,11 @@ class CommentsController < ApplicationController
   before_action :require_user
 
   def create
-    @post = Post.find(params[:post_id])
+    @post = Post.find_by_slug(params[:post_id])
     @comment = @post.comments.build(params.require(:comment).permit(:body))
-      # next 2 lines are compressed to the above line
-      # @comment = Comments.new(params.require(:comment).permit(:body))
-      # @comment.post = @post
+    # next 2 lines are compressed to the above line
+    # @comment = Comments.new(params.require(:comment).permit(:body))
+    # @comment.post = @post
     #@comment.user = User.first
     #test_id =  rand(0..3).to_i
     #if test_id == nil
@@ -18,7 +18,7 @@ class CommentsController < ApplicationController
     @comment.user = current_user
     if @comment.save
       flash[:notice] = "Your Comment was Added!!!"
-     # redirect_to post_path(@post)
+      # redirect_to post_path(@post)
       redirect_to post_path(@post)
     else
       render 'posts/show'
@@ -28,14 +28,19 @@ class CommentsController < ApplicationController
 
   # not normal CRUD
   def vote
-
-    @vote = Vote.create(voteable: Comment.find(params[:id]), user: current_user, vote: params[:vote])
-    if @vote.valid?
-      flash[:notice] = "Your vote was counted"
-    elsif
-    flash[:error] = "Vote error, you may only vote one time"
+    @one_comment = Comment.find(params[:id])
+    @vote = Vote.create(voteable: @one_comment, user: current_user, vote: params[:vote])
+    respond_to do |format|
+      format.html {
+        if @vote.valid?
+          flash[:notice] = "Your vote was counted"
+        elsif flash[:error] = "Vote error, you may only vote one time"
+        end
+        redirect_to :back }
+      format.js {
+        render 'posts/vote.js.erb'
+      }
     end
-    redirect_to :back
-  end
 
+  end
 end

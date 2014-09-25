@@ -16,3 +16,19 @@
 //= require_tree .
 //= require bootstrap
 
+//$(document).ready(function(){
+//    $(document).on('click','#vote_yes_post', function(){
+//        $.ajax({
+//            type: 'POST',
+//            url: '/vote_yes'
+//             data: {param1: "hi", param2: "there"}
+//        }).done(function(msg){
+//            $('#dom_element_to_change').replaceWith(msg);
+//        });
+//        return false;
+//    });
+//});
+
+// Now the rails way
+// add ", remote: true" to link_to in erb
+

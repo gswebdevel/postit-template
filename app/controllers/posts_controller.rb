@@ -5,12 +5,25 @@ class PostsController < ApplicationController
   #2. for redirect based on some condition like not authenticated
 
   def index
-    @posts = Post.all.sort_by{|x| x.total_votes}.reverse
+    @posts = Post.all.sort_by { |x| x.total_votes }.reverse
   end
 
   def show
 
     @comment = Comment.new
+
+    #  for api
+    respond_to do |format|
+      format.html # just do normal
+      format.json do
+        render json: @post
+        # this calls and returns @post.to_json
+        # check it out with http://localhost:3000/posts/testte.json
+      end
+      format.xml do
+        render xml: @post
+      end
+    end
   end
 
   def new
@@ -37,7 +50,7 @@ class PostsController < ApplicationController
 
 
   def edit
-    @post = Post.find(params[:id])
+    @post = Post.find_by(slug: params[:id])
   end
 
 
@@ -52,27 +65,44 @@ class PostsController < ApplicationController
     end
   end
 
-  # not normal CRUD
+  # not normal CRUD but normal request response
+  # def vote
+  #   @vote = Vote.create(voteable: set_post, user: current_user, vote: params[:vote])
+  #   if @vote.valid?
+  #     flash[:notice] = "Your vote was counted"
+  #   elsif
+  #   flash[:error] = "Vote error, you may only vote one time"
+  #   end
+  #   redirect_to :back
+  # end
+
+  # via ajax
   def vote
+
     @vote = Vote.create(voteable: set_post, user: current_user, vote: params[:vote])
-    if @vote.valid?
-      flash[:notice] = "Your vote was counted"
-    elsif
-      flash[:error] = "Vote error, you may only vote one time"
+    respond_to do |format|
+      format.html {
+        if @vote.valid?
+          flash[:notice] = "Your vote was counted"
+        elsif flash[:error] = "Vote error, you may only vote one time"
+        end
+        redirect_to :back }
+      format.js {
+
+      }
     end
-    redirect_to :back
   end
 
 
   private
 
   def post_params
-     params.require(:post).permit!  # to do all
+    params.require(:post).permit! # to do all
     #params.require(:post).permit(:title, :url, :description, category_ids: [])
   end
 
   def set_post
-    @post = Post.find(params[:id])
+    @post = Post.find_by(slug: params[:id])
 
   end
 

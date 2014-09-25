@@ -8,6 +8,7 @@ PostitTemplate::Application.routes.draw do
   post '/login', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'
 
+
   #post '/votes', to 'VoteController#create'
   # must pass infor votes
   # resources :votes, only: [:create]
